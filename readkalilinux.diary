@@ -1,0 +1,65 @@
+攻击saas【software as a service工具，如wordpress 作为他们网站的内容管理系统，或者在局域网中使
+##用drupal框架，寻找其中的漏洞，非常有意义
+turnkey linux 是一个很好的资源，turnkey工具的官网是http://www.turnkeylinux.org
+这里下载最流行的wordpress turnkey linux发行版，这是个模块系统，可以定制，但这个过程好像suselinux 有，但还需要再寻找和学习
+``````---------------------------------------------------------------------------------
+
+在浏览器中输入    http://www.turnkeylinux.org
+找到WordPress程序，在wordpress-blog publishing platform  链接进入下载页面
+下载iso映像文件，单击220m iso链接，填写邮箱，单击subscribe and go straight to download，将开始下载turndey wordpress
+
+#################################################
+安装wordpress turnkey linux
+这个安装过程中，有三种方式
+###guided  -use entire disk 
+###guided -user entire disk and set up lvm    install to hard disk and set up lvm
+###manual
+###################################################
+我们选择user entire disk set up lvm形式
+然后，按照提示一步步进行，最后甚至root account 和mysql 的root，及WordPress的admin account and email 
+跳过hub信息，安装更新
+最后界面显示WordPress应用服务的详细信息，如web地址，webshell地址和端口，webmin地址，phpmyadmin地址和端口及ssh/sftp地址和端口等，此时，表明WordPress turnkey linux就可以使用了。
+
+///////////////////////////////////////////////////////////
+# 攻击WordPress应用程序
+##启动WordPress虚拟机，在kili linux在使用wpscan攻击它：wpscan是一个黑盒安全扫描器，它允许用户查找WordPress安装版的一些已知的安全漏洞。
+
+wpsan 在kili中已经安装
+通过wpscan -u 192.168.41.130
+wpscan -u 192.168.41.130 -e u vp
+wpscan -u 192.168.41.130 -e u --wordlist /root/ wordlist.txt
+可以顺利破解出admin的密码
+
+//////////////////////////////////////////////////////////
+
+渗透测试最重要的阶段之一，就是信息收集，为了启动渗透测试，用户需要手机关于目标机器的基本信息，用户得到的信息越多，渗透测试成功的概率就越高，kali linux操作系统上提供了一些工具
+，可以帮助用户整理和组织目标主机的数据，使用户得到更好的后期侦查，本章将介绍使用maltego 、casefile、nmap工具的使用起主要知识点如下：
+
+枚举
+检测网路范围
+
+识别活跃的主机和查看打开端口
+系统指纹识别
+服务指纹识别
+其他信息手机手段
+使用maltego收集信息
+绘制网络图
+
+用snmp枚举，用户需要使用snmpenum工具，snmpenum是一个强大的snmp枚举工具，允许分析一个网络内snmp的信息传输。
+
+##dnssemum 是一款非常强大的域名信息收集工具，他能够通过谷歌货字典文件猜测可能存在的域名，病对一个网段进行反向查询，他不仅可以查询
+网站的主机地址信息，域名服务器和邮件交换记录，还可以在域名服务器上执行axfr请求，然后通过谷歌脚本得到扩展域名信息，提取子域名并查询，最后计算c类地址
+病执行whois查询，执行反向查询，把地址段写入文件。如下：
+dnsenum  --enum benet.com
+就可以查询出包括主机地址、域名服务地址和邮件服务地址，如果幸运的话，还可以看到一个区域传输。
+////////////////////////////////////////////////////////
+
+dns枚举工具fierce 和dnsenum工具性质差不多，其fierce主要是对子域名进行扫描和手机信息的，使用fierce工具获取一个目标主机上所有的ip地址和主机信息
+执行如下
+fierce -dns baidu.com
+
+还有snmp枚举工具snmpwalk 、snmpcheck、smtp-user-enum
+
+80页，看到，先浏览一遍吧
+
+
